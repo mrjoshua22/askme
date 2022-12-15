@@ -18,4 +18,12 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.destroy
   end
+
+  def show
+    @question = Question.find(params[:id])
+  end
+
+  def index
+    @questions = Question.all
+  end
 end
