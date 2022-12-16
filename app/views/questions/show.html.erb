@@ -1,4 +1,9 @@
 <h2>Вопрос</h2>
 <p><%= @question.body %></p>
 <p>user_id: <b><%= @question.user_id %></b></p>
-<p><%= link_to "Все вопросы", questions_path %></p>
+
+<p><%= link_to 'Изменить вопрос', edit_question_path(@question) %></p>
+
+<div><%= button_to 'Удалить вопрос', question_path(@question), method: :delete %></div>
+
+<p><%= link_to 'Все вопросы', questions_path %></p>
