@@ -1,24 +1,21 @@
-# README
+# AskMe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Requirements
 
-Things you may want to cover:
+`ruby >= 3.1.3`
 
-* Ruby version
+`rails ~> 7.0.4`
 
-* System dependencies
+### Installation & using
 
-* Configuration
+In `terminal` or `cmd`
 
-* Database creation
+- `$ git clone git@github.com:mrjoshua22/askme.git`
 
-* Database initialization
+- `$ gem install bundler` - if needed
 
-* How to run the test suite
+- `$ bundle` 
 
-* Services (job queues, cache servers, search engines, etc.)
+- `$ rails db:migrate`
 
-* Deployment instructions
-
-* ...
+- `$ rails s`
