@@ -1,7 +1,8 @@
 <div class="container">
   <h2 class="title-lg mb">Вопросы</h2>
   <% @questions.each do |question| %>
-    <p class="mb"><%= link_to "Вопрос #{question.id}", question_path(question) %></p>
+    <p class="mb "><%= link_to "Вопрос #{question.id}", question_path(question),
+      class: class_names(hidden: question.hidden?) %></p>
   <% end %>
 
   <p class="mt">

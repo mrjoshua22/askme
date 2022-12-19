@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[update destroy show edit]
+  before_action :set_question, only: %i[update destroy show edit hide]
 
   def create
     question = Question.create(question_params)
@@ -31,6 +31,12 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+  end
+
+  def hide
+    @question.update(hidden: true)
+
+    redirect_back_or_to(root_path)
   end
 
   private
