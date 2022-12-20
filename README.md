@@ -16,6 +16,8 @@ In `terminal` or `cmd`
 
 - `$ bundle` 
 
+- `$ mv config/database.yml.example config/database.yml`
+
 - `$ rails db:migrate`
 
 - `$ rails s`
