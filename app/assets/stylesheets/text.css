@@ -23,6 +23,10 @@ a, button {
   font-size: 80%;
 }
 
+.text-grey {
+  color: #a0a0a0;
+}
+
 .hidden {
   opacity: 50%;
 }
