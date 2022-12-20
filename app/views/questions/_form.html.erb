@@ -7,7 +7,9 @@
 
   <p class="mt">
     <%= form.submit 'Сохранить', class: 'button button-main' %>
-    &nbsp;или&nbsp;
-    <%= link_to 'вернуться', :back %>
+    <% unless params[:action] == 'index' %>
+      &nbsp;или&nbsp;
+      <%= link_to 'вернуться', :back %>
+    <% end %>
   </p>
 <% end %>
