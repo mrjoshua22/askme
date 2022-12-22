@@ -8,10 +8,10 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Данные пользователя обновлены'
+      redirect_to root_path, notice: 'Вы успешно зарегистрировались!'
     else
-      flash.now[:alert] = 'Припопытке сохранить пользователя возникли ошибки'
-      render :edit
+      flash.now[:alert] = 'Вы неправильно заполнили поля формы регистрации'
+      render :new
     end
   end
 
@@ -20,14 +20,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params:id)
+    @user = User.find(params[:id])
 
     if @user.update(user_params)
-      session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Вы успешно зарегистрировались!'
+      redirect_to root_path, notice: 'Данные пользователя обновлены'
     else
-      flash.now[:alert] = 'Вы неправильно заполнили поля формы регистрации'
-      render :new
+      flash.now[:alert] = 'При попытке сохранить пользователя возникли ошибки'
+      render :edit
     end
   end
 
