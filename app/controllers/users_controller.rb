@@ -1,12 +1,28 @@
 class UsersController < ApplicationController
+  def new
+    @user = User.new
+  end
+
   def create
-    user_params = params.require(:user).permit(
-      :name, :nickname, :email, :password, :password_confirmation
-    )
-    
     @user = User.new(user_params)
 
     if @user.save
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: 'Данные пользователя обновлены'
+    else
+      flash.now[:alert] = 'Припопытке сохранить пользователя возникли ошибки'
+      render :edit
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params:id)
+
+    if @user.update(user_params)
       session[:user_id] = @user.id
       redirect_to root_path, notice: 'Вы успешно зарегистрировались!'
     else
@@ -15,7 +31,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def new
-    @user = User.new
+  private
+
+  def user_params
+    params.require(:user).permit(
+      :name, :nickname, :email, :password, :password_confirmation
+    )
   end
 end
