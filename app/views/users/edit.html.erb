@@ -38,6 +38,10 @@
   </div>
 
   <div class="mt-lg">
+    <%= link_to 'Изменить цвет панели', edit_header_color_path, class: 'text-sm' %>
+  </div>
+
+  <div class="mt-lg">
     <%= button_to 'Удалить профиль', user_path(@user), method: :delete, 
       form: { data: { turbo_confirm: 'Вы точно хотите удалить свой профиль?' }}, 
       class: 'text-red text-sm' %>
