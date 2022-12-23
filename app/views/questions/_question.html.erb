@@ -1,6 +1,6 @@
 <div class="<%= class_names(hidden: question.hidden?) %>">
   <div class="mb-sm">
-    <%= question.body %>
+    <%= safe_join(question.body.split("\n"),tag(:br)) %>
   </div>
 
   <div class="text-sm question-footer">
