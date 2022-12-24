@@ -1,13 +1,13 @@
 <div class="container">
   <h2 class="title">Цвет панели</h2>
   <div class="mt">
-    <%= form_with scope: :header_color, url: edit_header_color_path, 
-      data: { turbo: false } do |form| %>
+    <%= form_with scope: :header_color, url: header_color_path,
+      data: { turbo: false }, method: :put do |form| %>
       <p class="mt">
-        <%= form.label :header_color, 'Выберите новый цвет для навигационной панели' %>
+        <%= form.label :color, 'Выберите новый цвет для навигационной панели' %>
       </p>
-      <p>
-        <%= form.color_field :header_color, value: '#370617',class: '' %>
+      <p class="mt">
+        <%= form.color_field :color, value: '#370617' %>
       </p>
 
       <p class="mt">
