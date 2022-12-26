@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :questions, dependent: :delete_all
+
   before_validation :downcase_nickname, :downcase_email
 
   validates :nickname, presence: true, length: { maximum: 40 },
