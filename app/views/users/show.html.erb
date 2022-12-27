@@ -10,24 +10,32 @@
   <p class="text-bold mt mb-lg"><%= display_nickname(@user) %></p>
 </div>
 
-<div class="container">
-  <%= link_to 'Спроси меня', new_question_path(user_id: @user.id),
-    class: 'button button-yellow' %>
+<% if @questions.empty? %>
 
-  <p class="mt">
-    <%= render 'questions/form', question: @question %>
-  </p>
-</div>
+  <%= render 'empty_state', user: @user %>
 
-<div class="mt-sm container">
-  <h2 class="title-lg">
-    <%= @questions.count %>
-    <%= inclination(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
-  </h2>
-</div>
+<% else %>
 
-<% @questions.each do |question| %>
-  <div class="mt-sm container">
-    <%= render question %>
+  <div class="container">
+    <%= link_to 'Спроси меня', new_question_path(user_id: @user.id),
+      class: 'button button-yellow' %>
+
+    <p class="mt">
+      <%= render 'questions/form', question: @question %>
+    </p>
   </div>
+
+  <div class="mt-sm container">
+    <h2 class="title-lg">
+      <%= @questions.count %>
+      <%= inclination(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
+    </h2>
+  </div>
+
+  <% @questions.each do |question| %>
+    <div class="mt-sm container">
+      <%= render question %>
+    </div>
+  <% end %>
+
 <% end %>

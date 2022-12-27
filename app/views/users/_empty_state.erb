@@ -1,0 +1,8 @@
+<div class="mt-sm mb-sm container empty-state">
+    <%= image_tag('group_26795.png') %>
+    <p class="mt">У этого пользователя пока никто ничего не спросил</p>
+    <p>Будьте первыми!</p>
+
+    <%= link_to 'Спроси меня', new_question_path(user_id: user.id),
+    class: 'button button-yellow mt' %>
+</div>
