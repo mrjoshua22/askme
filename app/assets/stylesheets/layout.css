@@ -30,3 +30,7 @@ body {
   color: white;
   text-decoration: none;
 }
+
+.empty-state {
+  text-align: center;
+}
