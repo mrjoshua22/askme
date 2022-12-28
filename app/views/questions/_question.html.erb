@@ -1,4 +1,11 @@
 <div class="<%= class_names(hidden: question.hidden?) %>">
+  <% if question.author.present? %>
+    <div class="mb-sm">
+      <%= link_to display_nickname(question.author), user_path(question.author),
+        class: 'text-bold mb' %>
+    </div>
+  <% end %>
+
   <div class="mb-sm">
     <%= safe_join(question.body.split("\n"),tag(:br)) %>
   </div>
