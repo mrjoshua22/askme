@@ -10,3 +10,7 @@
 .user-box a {
   color: #fff;
 }
+
+.nickname {
+  text-decoration: none;
+}

@@ -2,7 +2,7 @@
   <% if question.author.present? %>
     <div class="mb-sm">
       <%= link_to display_nickname(question.author), user_path(question.author),
-        class: 'text-bold mb' %>
+        class: 'text-bold mb nickname' %>
     </div>
   <% end %>
 

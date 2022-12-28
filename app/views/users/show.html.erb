@@ -2,7 +2,7 @@
   <h2 class="title-lg mt-lg"><%= @user.name %></h2>
 
   <% if current_user == @user %>
-    <p class="mt mb-lg">
+    <p class="mt">
       <%= link_to fa_icon('pencil'), edit_user_path(@user) %>
     </p>
   <% end %>
