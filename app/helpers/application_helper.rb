@@ -9,4 +9,12 @@ module ApplicationHelper
       many
     end
   end
+
+  def navbar_color
+    user_header_color = "header_color_#{current_user.id}" if current_user.present?
+
+    if session[user_header_color].present?
+      "style=background-color:#{session[user_header_color]}"
+    end
+  end
 end

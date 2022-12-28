@@ -1,0 +1,19 @@
+<div class="container">
+  <h2 class="title">Цвет панели</h2>
+  <div class="mt">
+    <%= form_with scope: :header_color, url: header_color_path,
+      data: { turbo: false }, method: :put do |form| %>
+      <p class="mt">
+        <%= form.label :color, 'Выберите новый цвет для навигационной панели' %>
+      </p>
+      <p class="mt">
+        <%= form.color_field :color, value: '#370617' %>
+      </p>
+
+      <p class="mt">
+        <%= form.submit 'Сохранить', class: 'button button-main' %>
+        <span class="text-sm">или <%= link_to 'вернуться', :back %></span>
+      </p>
+    <% end %>
+  </div>
+</div>
