@@ -1,4 +1,6 @@
 class HeaderColorsController < ApplicationController
+  before_action :ensure_current_user
+
   def edit
   end
 

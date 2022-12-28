@@ -61,10 +61,6 @@ class QuestionsController < ApplicationController
 
   private
 
-  def ensure_current_user
-    redirect_with_alert unless current_user.present?
-  end
-
   def set_question_for_current_user
     @question = current_user.questions.find(params[:id])
   end

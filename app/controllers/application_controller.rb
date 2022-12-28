@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def redirect_with_alert
     redirect_to root_path, alert: 'Вам сюда нельзя!'
   end
+
+  def ensure_current_user
+    redirect_with_alert unless current_user.present?
+  end
 end
