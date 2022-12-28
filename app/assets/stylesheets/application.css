@@ -8,7 +8,10 @@
  *= require layout
  *= require button
  *= require form
- *= require question
  *= require message
+ *= require utils
+ *
+ *= require question
  *= require user
+ *= require users
  */
