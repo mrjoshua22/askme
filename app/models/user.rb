@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include Gravtastic
+  gravtastic(secure: true, filetype: :png, size: 100, default: 'retro')
+
   has_secure_password
 
   has_many :questions, dependent: :delete_all
