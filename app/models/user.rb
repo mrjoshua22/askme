@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   include Gravtastic
+  extend FriendlyId
+
   gravtastic(secure: true, filetype: :png, size: 100, default: 'retro')
+
+  friendly_id :nickname, use: :slugged
 
   has_secure_password
 
