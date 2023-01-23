@@ -42,3 +42,8 @@ a, button {
 .hidden {
   opacity: 50%;
 }
+
+.hashtag {
+  text-decoration: none;
+  line-height: 1.5em;
+}

@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="title-lg mb">Вопрос <%= @question.id %></h2>
+  <h2 class="title mb">Вопрос #<%= @question.id %></h2>
   <p class="mt-sm">
     <%= link_to "Все вопросы #{display_nickname(@question.user)}",
       user_path(@question.user) %>
@@ -8,4 +8,11 @@
 
 <div class="container mt-sm">
   <%= render 'question', question: @question %>
+  <div class="mt-sm">
+    <% @question.hashtags.each do |hashtag| %>
+      <%= link_to display_hashtag(hashtag.name), hashtag_path(hashtag),
+        class: 'mr-sm hashtag' %>
+    <% end %>
+  </div>
 </div>
+
