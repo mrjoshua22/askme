@@ -7,11 +7,23 @@ class Question < ApplicationRecord
 
   validates :body, presence: true, length: { maximum: 280 }
 
-  after_commit :create_hashtag_questions, on: %i[create update]
+  after_commit :create_hashtags, on: %i[create update]
+  after_commit :remove_hashtags, on: :update
 
   private
 
-  def create_hashtag_questions
+  def remove_hashtags
+    removed_hashtags =
+      Hashtag.where(name: (hashtags.map(&:name) - extract_hashtag_names))
+
+    hashtag_questions.where(hashtag_id: removed_hashtags).delete_all
+
+    removed_hashtags.includes(:questions).each do |hashtag|
+      hashtag.delete if hashtag.questions.empty?
+    end
+  end
+
+  def create_hashtags
     extract_hashtag_names.each do |hashtag_name|
       hashtag_questions.create(
         hashtag: Hashtag.find_or_create_by(name: hashtag_name)

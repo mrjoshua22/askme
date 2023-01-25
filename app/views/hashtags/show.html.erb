@@ -9,6 +9,15 @@
       для юзера <%= link_to "#{display_nickname(question.user)}",
         user_path(question.user) %>
     </p>
+
     <%= render question %>
+
+    <p class="mt text-sm">Хэштеги</p>
+    <div class="mt-sm">
+      <% question.hashtags.each do |hashtag| %>
+        <%= link_to display_hashtag(hashtag.name), hashtag_path(hashtag),
+          class: 'mr-sm text-sm hashtag' %>
+      <% end %>
+    </div>
   </div>
 <% end %>

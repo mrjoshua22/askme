@@ -8,11 +8,15 @@
 
 <div class="container mt-sm">
   <%= render 'question', question: @question %>
-  <div class="mt-sm">
-    <% @question.hashtags.each do |hashtag| %>
-      <%= link_to display_hashtag(hashtag.name), hashtag_path(hashtag),
-        class: 'mr-sm hashtag' %>
-    <% end %>
-  </div>
+
+  <% unless @question.hashtags.empty? %>
+    <p class="mt text-sm">Хэштеги</p>
+    <div class="mt-sm">
+      <% @question.hashtags.each do |hashtag| %>
+        <%= link_to display_hashtag(hashtag.name), hashtag_path(hashtag),
+          class: 'mr-sm text-sm hashtag' %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 

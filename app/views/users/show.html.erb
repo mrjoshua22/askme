@@ -38,6 +38,9 @@
 
   <% @questions.each do |question| %>
     <div class="mt-sm container">
+      <p class="mb text-sm text-grey">
+        Вопрос <%= link_to "##{question.id}", question_path(question) %>
+      </p>
       <%= render question %>
     </div>
   <% end %>
