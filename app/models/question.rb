@@ -8,20 +8,10 @@ class Question < ApplicationRecord
   validates :body, presence: true, length: { maximum: 280 }
 
   after_commit :create_hashtags, on: %i[create update]
+  after_commit :delete_hashtags, on: %i[update destroy]
   after_commit :remove_hashtags, on: :update
 
   private
-
-  def remove_hashtags
-    removed_hashtags =
-      Hashtag.where(name: (hashtags.map(&:name) - extract_hashtag_names))
-
-    hashtag_questions.where(hashtag_id: removed_hashtags).delete_all
-
-    removed_hashtags.includes(:questions).each do |hashtag|
-      hashtag.delete if hashtag.questions.empty?
-    end
-  end
 
   def create_hashtags
     extract_hashtag_names.each do |hashtag_name|
@@ -29,6 +19,10 @@ class Question < ApplicationRecord
         hashtag: Hashtag.find_or_create_by(name: hashtag_name)
       )
     end
+  end
+
+  def delete_hashtags
+    Hashtag.where.missing(:questions).delete_all
   end
 
   def extract_hashtag_names
@@ -42,5 +36,12 @@ class Question < ApplicationRecord
   def hashtag_names(string)
     string.scan(/#[[:word:]]+/).
       map {|hashtag| hashtag.gsub('#', '').downcase }.uniq
+  end
+
+  def remove_hashtags
+    removed_hashtags =
+      Hashtag.where(name: (hashtags.map(&:name) - extract_hashtag_names))
+
+    hashtag_questions.where(hashtag_id: removed_hashtags).delete_all
   end
 end
