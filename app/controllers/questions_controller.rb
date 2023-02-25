@@ -53,7 +53,8 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.order(created_at: :desc).first(10)
     @users = User.order(created_at: :desc).first(10)
-    @hashtags = HashtagQuestion.includes(:hashtag).map(&:hashtag).uniq
+    @hashtags =
+      Hashtag.left_outer_joins(:questions).where.not(questions: { id: nil }).uniq
   end
 
   def hide
