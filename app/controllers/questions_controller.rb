@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
     @questions = Question.order(created_at: :desc).first(10)
     @users = User.order(created_at: :desc).first(10)
     @hashtags =
-      Hashtag.left_outer_joins(:questions).where.not(questions: { id: nil }).uniq
+      Hashtag.joins(:questions).uniq
   end
 
   def hide
